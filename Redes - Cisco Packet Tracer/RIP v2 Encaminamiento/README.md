@@ -1,36 +1,38 @@
-# 🚀 Repositorio Personal - Ricard Sala
+# 🔧 Pràctica: Configuració de Xarxa Dinàmica amb RIPv2
 
-¡Hola! 👋 Soy **Ricard Sala**, estudiante de **ASIR (Administración de Sistemas Informáticos en Red)**. Me apasiona la automatización de tareas, el despliegue de infraestructuras, la gestión de redes y la ciberseguridad. 
-
-Busco mi primera oportunidad laboral o prácticas en entornos Cloud, Administración de Sistemas (Linux/Windows) o DevOps, donde pueda aportar mis conocimientos técnicos y seguir aprendiendo de entornos de producción reales.
-
----
-
-## 🛠️ Tecnologías y Competencias
-* **Sistemas Operativos:** Linux (Ubuntu/Debian/Rocky), Windows Server.
-* **Redes y Enrutamiento:** Protocolos de enrutamiento dinámico (RIPv2, OSPF), VLANs, VPNs.
-* **Automatización y Scripts:** Python, Bash, automatización de tareas y bots.
-* **Servicios de Red:** DNS, DHCP, Apache/Nginx, SSH, FTP, SAMBA.
+## 📝 Què és aquest projecte?
+Aquest projecte és una pràctica de simulació en **Cisco Packet Tracer** on hem muntat una xarxa amb **4 routers interconnectats**. L'objectiu principal ha estat aconseguir que tots els ordinadors i servidors es puguin fer `ping` de punta a punta de forma automàtica usant el protocol **RIPv2**, sense haver de posar rutes estàtiques a mà.
 
 ---
 
-## 📁 Proyectos Destacados
+## 🗺️ Mapa de la Xarxa (Topologia)
 
-### 1. 🤖 Bot de Telegram
-* **Descripción:** Desarrollo de un bot automatizado en Python para Telegram enfocado en [menciona brevemente qué hace el bot, por ejemplo: monitorización de sistemas, alertas o automatización].
-* **Tecnologías:** Python, API de Telegram, [librerías usadas].
+La xarxa està dividida en aquestes zones i subxarxes:
 
-### 2. 🌐 Configuración RIP-v2 (Comandes)
-* **Descripción:** Implementación y análisis de un escenario de red utilizando el protocolo de enrutamiento dinámico RIPv2 mediante comandos avanzados de red.
-* **Tecnologías:** Cisco IOS / Quagga, Routing, Redes IPv4.
-
-### 3. 🎓 Proyecto Integrado ASIX (Pau & Ricard)
-* **Descripción:** Proyecto final integrador del ciclo donde diseñamos y desplegamos una infraestructura completa que incluye [ej: servidor web, bases de datos, seguridad perimetral...].
-* **Tecnologías:** Bash scripting, administración de servidores, documentación técnica.
+* **LAN Esquerra:** `172.16.16.0/24` (On estan el PC0 i el PC1)
+* **Enllaç entre R0 i R1:** `172.16.17.0/24`
+* **Zona Server0:** `172.16.18.0/24`
+* **Tram Central (Switch0):** `172.16.19.0/24` (Punt on es creuen el Router1, Router2 i el PC4)
+* **Zona Server2:** `172.16.20.0/24`
+* **Enllaç entre R2 i R3:** `172.16.21.0/24`
+* **LAN Dreta:** `172.16.22.0/24` (On estan el PC2 i el PC3)
 
 ---
 
-## 📫 Contacto y Enlaces
-* 💼 **LinkedIn:** [Enlace a tu perfil de LinkedIn]
-* 📧 **Email:** [Tu correo de contacto para empresas]
-* 📍 **Ubicación:** Cataluña, España
+## ⚙️ Comandes Clau Utilitzades (Lògica)
+
+Perquè els routers comparteixin les seves "agendes de contactes" (taules d'encaminament), hem entrat a la CLI de cadascun i hem aplicat aquesta configuració base:
+
+1. **`version 2` i `no auto-summary`:** Perquè el protocol funcioni amb xarxes modernes (VLSM) i els routers passin les IPs ben detallades sense ajuntar-les ni resumir-les de cop.
+2. **`network [IP.0]`:** Aquí hem posat **només** les xarxes que cada router toca directament amb els seus propis cables.
+3. **`passive-interface`:** Hem posat el "bozal" de seguretat a les interfícies que van directes a ordinadors o servidors. Així evitem que els PCs rebin brossa de dades de RIP que no necessiten i protegim la xarxa.
+
+### Exemple real de configuració (Router 1)
+```bash
+Router1(config)# router rip
+Router1(config-router)# version 2
+Router1(config-router)# no auto-summary
+Router1(config-router)# network 172.16.17.0
+Router1(config-router)# network 172.16.18.0
+Router1(config-router)# network 172.16.19.0
+Router1(config-router)# passive-interface fa1/0
