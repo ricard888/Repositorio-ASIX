@@ -1,0 +1,21 @@
+/* Estils basics per a la meva web */
+body {
+    font-family: sans-serif;
+    background-color: #f0f0f0;
+    margin: 20px;
+}
+
+h1 {
+    color: darkblue;
+}
+
+a {
+    margin-right: 15px;
+    font-weight: bold;
+}
+
+p {
+    padding: 10px;
+    color: black;
+    font-weight: 400;
+}
