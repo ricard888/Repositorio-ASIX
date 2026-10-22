@@ -30,9 +30,25 @@ El repositorio se organiza principalmente en proyectos enfocados a solucionar ne
 
 ```text
 Repositorio-ASIX/
-└── Proyectos Personales/
-    ├── APIs_y_Bots/
-    │   ├── Bot Telegram/               # Bot automatizado en Python integrado con la API de Telegram.
-    │   └── Gestor Peticiones de Red/    # Aplicación en Python (Flask + SQLite) para monitoreo y control de red.
-    └── Aplicaciones/
-        └── Medidor Rendimiento PC/      # Herramienta ejecutable para supervisar recursos y rendimiento del sistema.
+├── Proyectos Personales/
+│   ├── APIs_y_Bots/
+│   │   ├── Bot Telegram/               # Bot automatizado en Python integrado con la API de Telegram.
+│   │   └── Gestor Peticiones de Red/    # Aplicación en Python (Flask + SQLite) para monitoreo y control de red.
+│   └── Aplicaciones/
+│       └── Medidor Rendimiento PC/      # Herramienta ejecutable para supervisar recursos y rendimiento del sistema.
+└── Proyectos_Clase/
+    ├── Monitorizacion_y_Metricas/
+    │   └── MetriquesPrometheus-DashboardGrafana/
+    │       └── RSN_MonitoritzacioGrafana
+    ├── Programacion/
+    │   └── php_estructuras_control
+    ├── Proyectos_Grupales/
+    │   └── Projecte-ASIX-Pau-Ricard-main
+    ├── Redes/
+    │   └── Redes - Cisco Packet Tracer/
+    │       └── RIP v2 Encaminamiento
+    ├── Scripting/
+    │   └── Cmdlets/
+    │       └── RicardSala_Pr6
+    └── Sistemas Operativos/
+     
