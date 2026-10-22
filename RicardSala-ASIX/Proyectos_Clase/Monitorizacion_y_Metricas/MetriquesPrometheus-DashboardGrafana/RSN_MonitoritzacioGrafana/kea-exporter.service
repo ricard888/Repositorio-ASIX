@@ -1,0 +1,11 @@
+[Unit]
+Description=Kea Prometheus Exporter - Ricard Sala
+After=network.target kea-dhcp4-server.service
+
+[Service]
+ExecStart=/home/ricard.sala/.local/bin/kea-exporter http://172.24.66.10:8000
+Restart=always
+User=ricard.sala
+
+[Install]
+WantedBy=multi-user.target

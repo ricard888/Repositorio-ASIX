@@ -1,0 +1,32 @@
+services:
+  prometheus:
+    image: prom/prometheus:v2.55.1
+    container_name: prometheus-ricardsala
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./prometheus/alert-rules.yml:/etc/prometheus/alert-rules.yml
+    ports:
+      - "9090:9090"
+    networks:
+      - monitor-network
+
+  grafana:
+    image: grafana/grafana:11.3.0
+    container_name: grafana-ricardsala
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=ricardsala2026!
+    volumes:
+      - grafana-data:/var/lib/grafana
+    networks:
+      - monitor-network
+    depends_on:
+      - prometheus
+
+networks:
+  monitor-network:
+    driver: bridge
+
+volumes:
+  grafana-data:
