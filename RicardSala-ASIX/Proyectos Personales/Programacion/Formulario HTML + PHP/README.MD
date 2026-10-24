@@ -1,4 +1,4 @@
-Formulario Básico con HTML y PHP
+### Formulario Básico con HTML y PHP ###
 
 Este es un pequeño proyecto de prueba que he hecho para practicar cómo conectar un formulario de HTML con un script de PHP.
 
