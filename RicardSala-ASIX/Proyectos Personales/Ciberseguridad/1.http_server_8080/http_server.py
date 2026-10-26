@@ -1,6 +1,5 @@
 # Script que levanta un servidor web básico
-# en el puerto 8080 para demostrar la ejecución
-# de comandos
+# en el puerto 8080
 
 import os
 
